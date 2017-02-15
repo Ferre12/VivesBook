@@ -13,6 +13,23 @@ import java.sql.SQLException;
 public class AccountDB implements InterfaceAccountDB
 {
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @Override
     public Account zoekAccountOpLogin(String login) throws DBException
     {
