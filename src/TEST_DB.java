@@ -1,42 +1,38 @@
 
 import bags.Account;
-import database.AccountDB;
+import bags.Likes;
+import bags.Post;
+import bags.Vriendschap;
+import database.LikesDB;
+import database.PostDB;
+import database.VriendschapDB;
 import datatype.Geslacht;
-import exception.ApplicationException;
+import datatype.LikeType;
 import exception.DBException;
+import java.time.LocalDateTime;
 
 public class TEST_DB
 {
 
     public static void main(String args[])
-    {
-        AccountDB adb = new AccountDB();
-        try
-        {
-            //account zoeken op login
-            adb.zoekAccountOpLogin("Ferre12");
-            //account zoeken op emailadres
-            adb.zoekAccountOpEmail("ferre.tahon@gmail.com");
-        } catch (DBException e)
-        {
-            System.out.println(e.getMessage());
-        }
-
+    {    
+        //account object aanmaken
         Account a = new Account();
-        a.setEmailadres("qesj.aldo@gmail.com");
+        a.setEmailadres("ferre.tahon@gmail.com");
         a.setGeslacht(Geslacht.M);
-        a.setLogin("aldoqesja");
-        a.setNaam("Qesja");
+        a.setLogin("ferretahon");
+        a.setNaam("Tahon");
         a.setPaswoord("paswoord");
-        a.setVoornaam("Aldo");
+        a.setVoornaam("Ferre");
+        
         //account toevoegen
-        try
-        {
-            adb.toevoegenAccount(a);
-        } catch (DBException e)
-        {
-            System.out.println(e.getMessage());
-        }
+//        try
+//        {
+//            adb.toevoegenAccount(a);
+//        } catch (DBException e)
+//        {
+//            System.out.println(e.getMessage());
+//        }
 
         //account wijzigen
 //        try
@@ -49,5 +45,66 @@ public class TEST_DB
 //
 //        }
 
+//        try
+//        {
+//            //account zoeken op login
+//            adb.zoekAccountOpLogin("Ferre12");
+//            //account zoeken op emailadres
+//            adb.zoekAccountOpEmail("ferre.tahon@gmail.com");
+//        } catch (DBException e)
+//        {
+//            System.out.println(e.getMessage());
+//        }
+        
+        //post object maken
+        Post p = new Post();
+        p.setDatum(LocalDateTime.now());
+        p.setEigenaar("ferretahon");
+        p.setId(111);
+        p.setTekst("posttttttttt");
+        
+        //post toevoegen aan db
+//        PostDB pdb = new PostDB();
+//        try
+//        {
+//            pdb.toevoegenPost(p);
+//        } catch (DBException e)
+//        {
+//            System.out.println(e.getMessage());
+//        }
+        
+        
+        //likes object maken
+        Likes l = new Likes();
+        l.setAccountlogin("ferretahon");
+        l.setPostid(111);
+        l.setType(LikeType.leuk);
+        
+        LikesDB likesDb = new LikesDB();
+        //like toevoegen aan db
+//        try
+//        {
+//            likesDb.toevoegenLike(l);
+//        } catch (DBException e)
+//        {
+//            System.out.println(e.getMessage());
+//        }
+        
+        //vriendschap object maken
+        Vriendschap v = new Vriendschap();
+        v.setAccountlogin("ferretahon");
+        v.setAccountvriendlogin("aldoqesja");
+        
+        //vriendschap toevoegen aan db
+        VriendschapDB vdb = new VriendschapDB();
+        try
+        {
+            vdb.toevoegenVriendschap("ferretahon", "aldoqesja");
+        }
+        catch(DBException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
     }
 }

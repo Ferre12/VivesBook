@@ -6,16 +6,37 @@
 package database;
 
 import bags.Likes;
-import exception.ApplicationException;
+import database.connect.ConnectionManager;
 import exception.DBException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
 public class LikesDB implements InterfaceLikesDB {
 
     @Override
-    public void toevoegenLike(Likes like) throws DBException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void toevoegenLike(Likes like) throws DBException 
+    {
+        try (Connection conn = ConnectionManager.getConnection();)
+        {
+            try(PreparedStatement stmt = conn.prepareStatement("insert into likes(accountlogin, postid, type) values(?,?,?)"))
+            {
+                stmt.setString(1, like.getAccountlogin());
+                stmt.setInt(2, like.getPostid());
+                stmt.setString(3, like.getType().toString());
+                stmt.execute();
+            }
+            catch(SQLException sqlEx)
+            {
+                throw new DBException("SQL-exception in toevoegenLike " + "- statement" + sqlEx);
+            }
+        }
+        catch(SQLException sqlEx)
+        {
+            throw new DBException("SQL-exception in toevoegenLike " + "- connection" + sqlEx);
+        }
     }
 
     @Override
