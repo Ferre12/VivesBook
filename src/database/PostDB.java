@@ -80,6 +80,7 @@ public class PostDB implements InterfacePostDB
     @Override
     public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws DBException
     {
+        
         // connectie tot stand brengen (en automatisch sluiten)
 //        try (Connection conn = ConnectionManager.getConnection();) {
 //            ArrayList<Post> posts = new ArrayList<>();
