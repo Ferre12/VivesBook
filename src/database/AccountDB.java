@@ -49,8 +49,6 @@ public class AccountDB implements InterfaceAccountDB
 
                         returnAccount = a;
                     }
-
-                    System.out.println(returnAccount);
                 } catch (SQLException sqlEx)
                 {
                     throw new DBException("SQL-exception in zoekKlant "
@@ -108,8 +106,6 @@ public class AccountDB implements InterfaceAccountDB
 
                         returnAccount = a;
                     }
-
-                    System.out.println(returnAccount);
                 } catch (SQLException sqlEx)
                 {
                     throw new DBException("SQL-exception in zoekKlant "
@@ -149,13 +145,13 @@ public class AccountDB implements InterfaceAccountDB
 
             } catch (SQLException sqlEx)
             {
-                throw new DBException("SQL-exception in toevoegenKlant "
+                throw new DBException("SQL-exception in toevoegenAccount "
                         + "- statement" + sqlEx);
             }
         } catch (SQLException sqlEx)
         {
             throw new DBException(
-                    "SQL-exception in toevoegenKlant "
+                    "SQL-exception in toevoegenAccount "
                     + "- connection" + sqlEx);
         }
     }

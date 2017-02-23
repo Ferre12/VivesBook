@@ -6,6 +6,7 @@
 package database;
 
 import bags.Likes;
+import exception.ApplicationException;
 import exception.DBException;
 import java.util.ArrayList;
 
@@ -17,11 +18,11 @@ public interface InterfaceLikesDB {
 
     public void toevoegenLike(Likes like) throws DBException;
 
-    public void wijzigenLike(Likes teWijzigenLike) throws DBException;
+    public void wijzigenLike(Likes teWijzigenLike) throws DBException, ApplicationException;
 
     public void verwijderenLike(String login, Integer postid) throws DBException;
 
-    public Likes zoekLike(String login, int postid) throws DBException;
+    public Likes zoekLike(String login, Integer postid) throws DBException;
 
     public ArrayList<Likes> zoekAlleLikesVanPost(int postID) throws DBException;
 }

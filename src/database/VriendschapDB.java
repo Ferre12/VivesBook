@@ -25,6 +25,8 @@ public class VriendschapDB {
         // connectie tot stand brengen (en automatisch sluiten)
         try (Connection conn = ConnectionManager.getConnection();) {
             // preparedStatement opstellen (en automtisch sluiten)
+            
+            //eerste rij toevoegen
             try (PreparedStatement stmt = conn.
               prepareStatement(
                 "INSERT INTO vriendschap(accountlogin, accountvriendlogin) VALUES(?,?)",
@@ -32,6 +34,22 @@ public class VriendschapDB {
 
                   stmt.setString(1, account);
                   stmt.setString(2, vriend);
+
+                  // execute voert elke sql-statement uit, executeQuery enkel de select
+                  stmt.executeUpdate();
+
+              } catch (SQLException sqlEx) {
+                  throw new DBException("SQL-exception in toevoegenFriend" + sqlEx);
+              }
+            
+              //tweede rij toevoegen
+              try (PreparedStatement stmt = conn.
+              prepareStatement(
+                "INSERT INTO vriendschap(accountlogin, accountvriendlogin) VALUES(?,?)",
+                Statement.RETURN_GENERATED_KEYS);) {
+
+                  stmt.setString(1, vriend);
+                  stmt.setString(2, account);
 
                   // execute voert elke sql-statement uit, executeQuery enkel de select
                   stmt.executeUpdate();
@@ -50,11 +68,25 @@ public class VriendschapDB {
         // connectie tot stand brengen (en automatisch sluiten)
         try (Connection conn = ConnectionManager.getConnection();) {
             // preparedStatement opstellen (en automtisch sluiten)
+            
+            //eerste rij verwijderen
             try (PreparedStatement stmt = conn.prepareStatement(
               "delete from vriendschap where accountlogin = ? and accountvriendlogin = ?");) {
 
                 stmt.setString(1, account);
                 stmt.setString(2, vriend);
+                // execute voert elke sql-statement uit, executeQuery enkel de select
+                stmt.execute();
+            } catch (SQLException sqlEx) {
+                throw new DBException("SQL-exception in verwijderenFriend - statement" + sqlEx);
+            }
+            
+            //tweede rij verwijderen
+            try (PreparedStatement stmt = conn.prepareStatement(
+              "delete from vriendschap where accountlogin = ? and accountvriendlogin = ?");) {
+
+                stmt.setString(1, vriend);
+                stmt.setString(2, account);
                 // execute voert elke sql-statement uit, executeQuery enkel de select
                 stmt.execute();
             } catch (SQLException sqlEx) {

@@ -15,12 +15,12 @@ import java.util.ArrayList;
  */
 public interface InterfacePostDB {
 
-    public Post zoekPost(int id) throws DBException;
+    public Post zoekPost(String login, Integer postid) throws DBException;
 
     public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws
       DBException;
 
-    public void verwijderenPost(Integer id) throws DBException;
+    public void verwijderenPost(String login, Integer postid) throws DBException;
 
     public Integer toevoegenPost(Post post) throws DBException;
 
