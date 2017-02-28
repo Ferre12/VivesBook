@@ -80,43 +80,50 @@ public class PostDB implements InterfacePostDB
     @Override
     public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws DBException
     {
-        
+
         // connectie tot stand brengen (en automatisch sluiten)
-//        try (Connection conn = ConnectionManager.getConnection();) {
-//            ArrayList<Post> posts = new ArrayList<>();
-//            // preparedStatement opstellen (en automatisch sluiten)
-//            try (PreparedStatement stmt = conn.
-//                    prepareStatement(
-//                            "select rekeningnummer, saldo, status, eigenaar from rekening where status = \'gesloten\' and eigenaar = ?");) {
-//                        stmt.setInt(1, eigenaar);
-//                        stmt.execute();
-//                        // result opvragen (en automatisch sluiten)
-//                        try (ResultSet r = stmt.getResultSet()) {
-//                            // van alle rekeningen uit de database Rekening-objecten maken
-//                            // en in een lijst steken
-//                            while (r.next()) {
-//                                Rekening rb = new Rekening();
-//                                rb.setRekeningnummer(new Rekeningnummer(r.getString("rekeningnummer")));
-//                                rb.setSaldo(r.getBigDecimal("saldo"));
-//                                rb.setEigenaar(r.getInt("eigenaar"));
-//                                rb.setStatus(RekeningStatus.valueOf(r.getString("status")));
-//                                rl.add(rb);
-//                            }
-//                            return rl;
-//                        } catch (SQLException sqlEx) {
-//                            throw new DBException(
-//                                    "SQL-exception in zoekGeslotenRekeningen - resultset" + sqlEx);
-//                        }
-//                    } catch (SQLException sqlEx) {
-//                        throw new DBException(
-//                                "SQL-exception in zoekGeslotenRekeningen - statement" + sqlEx);
-//                    }
-//        } catch (SQLException sqlEx) {
-//            throw new DBException(
-//                    "SQL-exception in zoekGeslotenRekeningen - connection" + sqlEx);
-//        }
-        ArrayList<Post> a = new ArrayList<>();
-        return a;
+        try (Connection conn = ConnectionManager.getConnection();)
+        {
+            ArrayList<Post> posts = new ArrayList<>();
+            // preparedStatement opstellen (en automatisch sluiten)
+            try (PreparedStatement stmt = conn.
+                    prepareStatement(
+                            "select id, datum, tekst, eigenaar from post where eigenaar in (select accountvriendlogin from vriendschap where accountlogin = ?) or eigenaar = ?");)
+            {
+                stmt.setString(1, login);
+                stmt.setString(2, login);
+                stmt.execute();
+                // result opvragen (en automatisch sluiten)
+                try (ResultSet r = stmt.getResultSet())
+                {
+                    //alle posts in de arraylist posts steken
+                    while (r.next())
+                    {
+                        Post p = new Post();                        
+                        p.setId(r.getInt("id"));
+                        LocalDateTime ldt = r.getTimestamp("datum").toLocalDateTime();
+                        p.setDatum(ldt);
+                        p.setTekst(r.getString("tekst"));
+                        p.setEigenaar(r.getString("eigenaar"));
+                        
+                        posts.add(p);
+                    }
+                    return posts;
+                } catch (SQLException sqlEx)
+                {
+                    throw new DBException(
+                            "SQL-exception in zoekAllePostsVanAccountEnVrienden - resultset" + sqlEx);
+                }
+            } catch (SQLException sqlEx)
+            {
+                throw new DBException(
+                        "SQL-exception in zoekAllePostsVanAccountEnVrienden - statement" + sqlEx);
+            }
+        } catch (SQLException sqlEx)
+        {
+            throw new DBException(
+                    "SQL-exception in zoekGeslotenRekeningen - connection" + sqlEx);
+        }
     }
 
     @Override

@@ -12,6 +12,7 @@ import datatype.LikeType;
 import exception.ApplicationException;
 import exception.DBException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class TEST_DB
 {
@@ -42,6 +43,14 @@ public class TEST_DB
         a3.setNaam("De Crock");
         a3.setPaswoord("paswoord");
         a3.setVoornaam("Gregory");
+        
+        Account a4 = new Account();
+        a4.setEmailadres("karel.vangheluwe@gmail.com");
+        a4.setGeslacht(Geslacht.M);
+        a4.setLogin("karelvangheluwe");
+        a4.setNaam("Vangheluwe");
+        a4.setPaswoord("paswoord");
+        a4.setVoornaam("Karel");
 
         Post p = new Post();
         p.setDatum(LocalDateTime.now());
@@ -66,6 +75,18 @@ public class TEST_DB
         p4.setEigenaar("aldoqesja");
         p4.setId(444);
         p4.setTekst("post4");
+        
+        Post p5 = new Post();
+        p5.setDatum(LocalDateTime.now());
+        p5.setEigenaar("karelvangheluwe");
+        p5.setId(555);
+        p5.setTekst("post5");
+        
+        Post p6 = new Post();
+        p6.setDatum(LocalDateTime.now());
+        p6.setEigenaar("gregorydecrock");
+        p6.setId(666);
+        p6.setTekst("post6");
 
         Vriendschap v = new Vriendschap();
         v.setAccountlogin("ferretahon");
@@ -88,6 +109,7 @@ public class TEST_DB
 //            //adb.toevoegenAccount(a);
 //            //adb.toevoegenAccount(a2);
 //            //adb.toevoegenAccount(a3);
+//            adb.toevoegenAccount(a4);
 //            
 //        } catch (DBException e)
 //        {
@@ -123,6 +145,8 @@ public class TEST_DB
             //pdb.toevoegenPost(p2);
             //pdb.toevoegenPost(p3);
             //pdb.toevoegenPost(p4);
+            //pdb.toevoegenPost(p5);
+            //pdb.toevoegenPost(p6);
 
             //post 1 verwijderen
             pdb.verwijderenPost("ferretahon", 111);
@@ -131,11 +155,12 @@ public class TEST_DB
             System.out.println(e.getMessage());
         }
         
-        //post zoeken
+        //posts zoeken
         try
         {
-            Post returnPost = pdb.zoekPost("ferretahon", 333);
-            System.out.println(returnPost);
+            //Post returnPost = pdb.zoekPost("ferretahon", 333);
+            ArrayList<Post> posts = pdb.zoekAllePostsVanAccountEnVrienden("ferretahon");
+            System.out.println(posts);
         } catch (DBException ex)
         {
             System.out.println(ex.getMessage());
@@ -175,14 +200,16 @@ public class TEST_DB
 
         //vriendschap toevoegen of verwijderen aan db
         VriendschapDB vdb = new VriendschapDB();
-        try
-        {
-            //vdb.toevoegenVriendschap("ferretahon", "aldoqesja");
-            vdb.verwijderenVriendschap("ferretahon", "aldoqesja");
-
-        } catch (DBException e)
-        {
-            System.out.println(e.getMessage());
-        }
+//        try
+//        {
+//            vdb.toevoegenVriendschap("ferretahon", "aldoqesja");
+//            vdb.toevoegenVriendschap("gregorydecrock", "ferretahon");
+//            vdb.toevoegenVriendschap("aldoqesja", "gregorydecrock");
+//            //vdb.verwijderenVriendschap("ferretahon", "aldoqesja");
+//
+//        } catch (DBException e)
+//        {
+//            System.out.println(e.getMessage());
+//        }
     }
 }
