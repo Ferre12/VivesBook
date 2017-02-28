@@ -90,6 +90,7 @@ public class PostDB implements InterfacePostDB
                     prepareStatement(
                             "select id, datum, tekst, eigenaar from post where eigenaar in (select accountvriendlogin from vriendschap where accountlogin = ?) or eigenaar = ?");)
             {
+                
                 stmt.setString(1, login);
                 stmt.setString(2, login);
                 stmt.execute();
