@@ -147,7 +147,6 @@ public class TEST_DB
             //pdb.toevoegenPost(p4);
             //pdb.toevoegenPost(p5);
             //pdb.toevoegenPost(p6);
-
             //post 1 verwijderen
             pdb.verwijderenPost("ferretahon", 111);
         } catch (DBException e)
