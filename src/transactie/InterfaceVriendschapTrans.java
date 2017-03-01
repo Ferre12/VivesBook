@@ -5,6 +5,7 @@
  */
 package transactie;
 
+import bags.Vriendschap;
 import exception.ApplicationException;
 import exception.DBException;
 
@@ -14,7 +15,9 @@ import exception.DBException;
  */
 public interface InterfaceVriendschapTrans {
 
-    public void VriendschapToevoegen(String account, String vriend) throws DBException, ApplicationException;
+    public void vriendschapToevoegen(String account, String vriend) throws DBException, ApplicationException;
 
     public void vriendschapVerwijderen(String account, String vriend) throws DBException, ApplicationException;
+    
+    public Vriendschap zoekVriendschap(String account, String vriend) throws DBException;
 }

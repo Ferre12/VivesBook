@@ -15,7 +15,7 @@ import exception.DBException;
  */
 public interface InterfaceLikesTrans {
 
-    public void LikesToevoegen(Likes like) throws DBException, ApplicationException;
+    public void likeToevoegen(Likes like) throws DBException, ApplicationException;
 
     public void likeVerwijderen(String account, Integer postID) throws DBException, ApplicationException;
 

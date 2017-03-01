@@ -6,6 +6,7 @@
 package transactie;
 
 import bags.Likes;
+import database.LikesDB;
 import exception.ApplicationException;
 import exception.DBException;
 
@@ -15,19 +16,24 @@ import exception.DBException;
  */
 public class LikesTrans implements InterfaceLikesTrans {
 
+    private LikesDB ldb;
+    
     @Override
-    public void LikesToevoegen(Likes like) throws DBException, ApplicationException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void likeToevoegen(Likes like) throws DBException, ApplicationException {
+        ldb = new LikesDB();
+        ldb.toevoegenLike(like);
     }
 
     @Override
     public void likeVerwijderen(String account, Integer postID) throws DBException, ApplicationException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ldb = new LikesDB();
+        ldb.verwijderenLike(account, postID);
     }
 
     @Override
     public void likeWijzigen(Likes like) throws DBException, ApplicationException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ldb = new LikesDB();
+        ldb.wijzigenLike(like);
     }
 
 }

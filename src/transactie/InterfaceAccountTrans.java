@@ -14,9 +14,14 @@ import exception.DBException;
  * @author Katrien.Deleu
  */
 public interface InterfaceAccountTrans {
+    
+    public Account zoekAccountOpLogin(String login) throws DBException;
+    
+    public Account zoekAccountOpEmail(String email) throws DBException;
+    
     public void accountToevoegen(Account acc) throws DBException, ApplicationException ;
     
-     public void accountWijzigen(Account acc) throws DBException, ApplicationException ;
+    public void accountWijzigen(Account acc) throws DBException, ApplicationException ;
 
     
 }

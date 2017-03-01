@@ -43,7 +43,7 @@ public class TEST_DB
         a3.setNaam("De Crock");
         a3.setPaswoord("paswoord");
         a3.setVoornaam("Gregory");
-        
+
         Account a4 = new Account();
         a4.setEmailadres("karel.vangheluwe@gmail.com");
         a4.setGeslacht(Geslacht.M);
@@ -75,13 +75,13 @@ public class TEST_DB
         p4.setEigenaar("aldoqesja");
         p4.setId(444);
         p4.setTekst("post4");
-        
+
         Post p5 = new Post();
         p5.setDatum(LocalDateTime.now());
         p5.setEigenaar("karelvangheluwe");
         p5.setId(555);
         p5.setTekst("post5");
-        
+
         Post p6 = new Post();
         p6.setDatum(LocalDateTime.now());
         p6.setEigenaar("gregorydecrock");
@@ -96,11 +96,26 @@ public class TEST_DB
         l.setAccountlogin("ferretahon");
         l.setPostid(333);
         l.setType(LikeType.leuk);
-        
+
         Likes l2 = new Likes();
         l2.setAccountlogin("aldoqesja");
         l2.setPostid(222);
         l2.setType(LikeType.boos);
+
+        Likes l3 = new Likes();
+        l3.setAccountlogin("gregorydecrock");
+        l3.setPostid(222);
+        l3.setType(LikeType.geweldig);
+
+        Likes l4 = new Likes();
+        l4.setAccountlogin("ferretahon");
+        l4.setPostid(222);
+        l4.setType(LikeType.leuk);
+        
+        Likes l5 = new Likes();
+        l5.setAccountlogin("ferretahon");
+        l5.setPostid(333);
+        l5.setType(LikeType.leuk);
 
         //account toevoegen of verwijderen
         AccountDB adb = new AccountDB();
@@ -153,7 +168,7 @@ public class TEST_DB
         {
             System.out.println(e.getMessage());
         }
-        
+
         //posts zoeken
         try
         {
@@ -170,8 +185,11 @@ public class TEST_DB
         try
         {
             likesDb.toevoegenLike(l);
-            //likesDb.toevoegenLike(l2);
             likesDb.verwijderenLike("ferretahon", 333);
+            //likesDb.toevoegenLike(l2);
+            //likesDb.toevoegenLike(l3);
+            //likesDb.toevoegenLike(l4);
+            //likesDb.toevoegenLike(l5);
         } catch (DBException e)
         {
             System.out.println(e.getMessage());
@@ -187,11 +205,14 @@ public class TEST_DB
             System.out.println(e.getMessage());
         }
 
-        //like zoeken
+        //likes zoeken
         try
         {
             Likes returnLike = likesDb.zoekLike("aldoqesja", 222);
             System.out.println(returnLike);
+            
+            ArrayList<Likes> likes = likesDb.zoekAlleLikesVanPost(222);
+            System.out.println(likes);
         } catch (DBException e)
         {
             System.out.println(e.getMessage());

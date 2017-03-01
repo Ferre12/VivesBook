@@ -15,6 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LikesDB implements InterfaceLikesDB
 {
@@ -85,23 +87,27 @@ public class LikesDB implements InterfaceLikesDB
 
     public void verwijderenLike(String login, Integer postid) throws DBException
     {
-        try (Connection conn = ConnectionManager.getConnection();) {
+        try (Connection conn = ConnectionManager.getConnection();)
+        {
             // preparedStatement opstellen (en automtisch sluiten)
             try (PreparedStatement stmt = conn.prepareStatement(
-              "delete from likes where accountlogin = ? and postid = ?");) {
+                    "delete from likes where accountlogin = ? and postid = ?");)
+            {
 
                 stmt.setString(1, login);
                 stmt.setInt(2, postid);
                 // execute voert elke sql-statement uit, executeQuery enkel de select
                 stmt.execute();
-            } catch (SQLException sqlEx) {
+            } catch (SQLException sqlEx)
+            {
                 throw new DBException("SQL-exception in verwijderenLike - statement" + sqlEx);
             }
-        } catch (SQLException sqlEx) {
+        } catch (SQLException sqlEx)
+        {
             throw new DBException(
-              "SQL-exception in verwijderenFriend - connection" + sqlEx);
+                    "SQL-exception in verwijderenFriend - connection" + sqlEx);
         }
-        
+
     }
 
     @Override
@@ -162,7 +168,43 @@ public class LikesDB implements InterfaceLikesDB
     @Override
     public ArrayList<Likes> zoekAlleLikesVanPost(int postID) throws DBException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //connectie tot stand brengen (en automatisch sluiten)
+        try (Connection conn = ConnectionManager.getConnection();)
+        {
+            ArrayList<Likes> likes = new ArrayList<>();
+
+            //preparedStatement opstellen (en automatisch sluiten)
+            try (PreparedStatement stmt = conn.prepareStatement("select accountlogin, postid, type from likes where postid = ?");)
+            {
+                stmt.setInt(1, postID);
+                stmt.execute();
+                //result opvragen (en automatisch sluiten)
+                try (ResultSet r = stmt.getResultSet())
+                {
+                    //alle posts in de arraylist likes steken
+                    while (r.next())
+                    {
+                        Likes l = new Likes();
+                        l.setAccountlogin(r.getString("accountlogin"));
+                        l.setPostid(r.getInt("postid"));
+                        l.setType(LikeType.valueOf(r.getString("type")));
+                        likes.add(l);
+                    }
+                    return likes;
+
+                } catch (SQLException sqlEx)
+                {
+                    throw new DBException("SQL-exception in zoekAlleLikesVanPost - resultset" + sqlEx);
+                }
+            }
+            catch(SQLException sqlEx)
+            {
+                throw new DBException("SQL)exception in zoekAlleLikesVanPost - statement" + sqlEx);
+            }
+        } catch (SQLException ex)
+        {
+            throw new DBException("SQL-exception in zoekAlleLikesVanPost - connection");
+        }
     }
 
 }

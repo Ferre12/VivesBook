@@ -5,6 +5,8 @@
  */
 package transactie;
 
+import bags.Vriendschap;
+import database.VriendschapDB;
 import exception.ApplicationException;
 import exception.DBException;
 
@@ -12,17 +14,28 @@ import exception.DBException;
  *
  * @author Katrien.Deleu
  */
-public class VriendschapTrans implements InterfaceVriendschapTrans {
+public class VriendschapTrans implements InterfaceVriendschapTrans
+{
+    private VriendschapDB vdb;
 
     @Override
-    public void VriendschapToevoegen(String account, String vriend) throws DBException, ApplicationException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void vriendschapToevoegen(String account, String vriend) throws DBException, ApplicationException
+    {
+        vdb = new VriendschapDB();
+        vdb.toevoegenVriendschap(account, vriend);
     }
 
     @Override
-    public void vriendschapVerwijderen(String account, String vriend) throws DBException, ApplicationException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void vriendschapVerwijderen(String account, String vriend) throws DBException, ApplicationException
+    {
+        vdb = new VriendschapDB();
+        vdb.verwijderenVriendschap(account, vriend);
     }
 
-   
+    @Override
+    public Vriendschap zoekVriendschap(String account, String vriend) throws DBException
+    {
+        vdb = new VriendschapDB();
+        return vdb.zoekVriendschap(account, vriend);
+    }
 }

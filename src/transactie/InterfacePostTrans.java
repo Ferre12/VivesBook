@@ -8,6 +8,7 @@ package transactie;
 import bags.Post;
 import exception.ApplicationException;
 import exception.DBException;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +16,13 @@ import exception.DBException;
  */
 public interface InterfacePostTrans {
 
-    public Post postToevoegen(Post post) throws DBException, ApplicationException;
+    public Integer postToevoegen(Post post) throws DBException, ApplicationException;
 
     public void postVerwijderen(Integer postID, String verwijderaar) throws DBException, ApplicationException;
+    
+    public Post zoekPost(String login, Integer postid) throws DBException;
+    
+    public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws DBException;
+    
+    
 }

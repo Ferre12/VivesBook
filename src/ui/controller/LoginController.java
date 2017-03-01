@@ -7,7 +7,10 @@ package ui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import ui.VIVESbook;
 
 /**
@@ -19,6 +22,15 @@ public class LoginController implements Initializable {
 
     // referentie naar mainapp (start)
     private VIVESbook mainApp;
+    
+    @FXML
+    private TextField txtLogin;
+    
+    @FXML
+    private TextField txtPassword;
+    
+    @FXML
+    private Button btnOk;
 
     /**
      * Initializes the controller class.
@@ -37,5 +49,12 @@ public class LoginController implements Initializable {
     public void setMainApp(VIVESbook mainApp) {
         this.mainApp = mainApp;
     }
+    
+    @FXML
+    public void login()
+    {
+        System.out.println("qfsd");
+    }
+    
 
 }

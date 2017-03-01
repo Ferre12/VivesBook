@@ -6,8 +6,10 @@
 package transactie;
 
 import bags.Post;
+import database.PostDB;
 import exception.ApplicationException;
 import exception.DBException;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,15 +17,34 @@ import exception.DBException;
  */
 public class PostTrans implements InterfacePostTrans {
 
+    private PostDB pdb;
     @Override
-    public Post postToevoegen(Post post) throws DBException, ApplicationException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Integer postToevoegen(Post post) throws DBException, ApplicationException {
+        pdb = new PostDB();
+        return pdb.toevoegenPost(post);
     }
 
     @Override
     public void postVerwijderen(Integer postID, String verwijderaar) throws DBException, ApplicationException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pdb = new PostDB();
+        pdb.verwijderenPost(verwijderaar, postID);
     }
+
+    @Override
+    public Post zoekPost(String login, Integer postid) throws DBException
+    {
+        pdb = new PostDB();
+        return pdb.zoekPost(login, postid);
+    }
+
+    @Override
+    public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws DBException
+    {
+        pdb = new PostDB();
+        return pdb.zoekAllePostsVanAccountEnVrienden(login);
+    }
+    
+    
 
   
 }
