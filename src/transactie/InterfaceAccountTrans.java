@@ -15,13 +15,15 @@ import exception.DBException;
  */
 public interface InterfaceAccountTrans {
     
-    public Account zoekAccountOpLogin(String login) throws DBException;
+    public Account zoekAccountOpLogin(String login) throws DBException, ApplicationException;
     
-    public Account zoekAccountOpEmail(String email) throws DBException;
+    public Account zoekAccountOpEmail(String email) throws DBException, ApplicationException;
     
     public void accountToevoegen(Account acc) throws DBException, ApplicationException ;
     
     public void accountWijzigen(Account acc) throws DBException, ApplicationException ;
+    
+    public Account passwordMatchAccount(String login, String password) throws DBException, ApplicationException ;
 
     
 }

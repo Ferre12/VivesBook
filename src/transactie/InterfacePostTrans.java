@@ -22,7 +22,7 @@ public interface InterfacePostTrans {
     
     public Post zoekPost(String login, Integer postid) throws DBException;
     
-    public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws DBException;
+    public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws DBException, ApplicationException;
     
     
 }

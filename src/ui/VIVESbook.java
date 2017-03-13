@@ -5,6 +5,7 @@
  */
 package ui;
 
+import bags.Account;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -49,8 +50,8 @@ public class VIVESbook extends Application {
 
         } catch (Exception e) {
             System.out.println("!!! - " + e.getMessage());
-
         }
+        
 
     }
 
@@ -77,7 +78,7 @@ public class VIVESbook extends Application {
     }
 
    
-    public void laadPostsScherm() {
+    public void laadPostsScherm(Account a) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource(
               "view/Post.fxml"));
@@ -88,6 +89,7 @@ public class VIVESbook extends Application {
 
             // referentie naar hier bewaren in de controller
             controller.setMainApp(this);
+            controller.setData(a);
 
             Scene scene = new Scene(root);
             stage.setTitle("VIVESbook - overzicht posts");
@@ -95,6 +97,7 @@ public class VIVESbook extends Application {
 
         } catch (IOException e) {
             System.out.println("!!! - " + e.getMessage());
+            e.printStackTrace();
         }
 
     }

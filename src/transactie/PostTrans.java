@@ -15,17 +15,21 @@ import java.util.ArrayList;
  *
  * @author Katrien.Deleu
  */
-public class PostTrans implements InterfacePostTrans {
+public class PostTrans implements InterfacePostTrans
+{
 
     private PostDB pdb;
+
     @Override
-    public Integer postToevoegen(Post post) throws DBException, ApplicationException {
+    public Integer postToevoegen(Post post) throws DBException, ApplicationException
+    {
         pdb = new PostDB();
         return pdb.toevoegenPost(post);
     }
 
     @Override
-    public void postVerwijderen(Integer postID, String verwijderaar) throws DBException, ApplicationException {
+    public void postVerwijderen(Integer postID, String verwijderaar) throws DBException, ApplicationException
+    {
         pdb = new PostDB();
         pdb.verwijderenPost(verwijderaar, postID);
     }
@@ -38,13 +42,19 @@ public class PostTrans implements InterfacePostTrans {
     }
 
     @Override
-    public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws DBException
+    public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws DBException, ApplicationException
     {
+        if (login == null || login.trim().equals(""))
+        {
+            throw new ApplicationException("Login niet ingevuld");
+        }
         pdb = new PostDB();
-        return pdb.zoekAllePostsVanAccountEnVrienden(login);
+        ArrayList<Post> p = pdb.zoekAllePostsVanAccountEnVrienden(login);
+        if(p == null)
+        {
+            throw new ApplicationException("Post niet gevonden");
+        }
+        return p;
     }
-    
-    
 
-  
 }
