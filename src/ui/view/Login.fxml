@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.LoginController">
-   <children>
-      <Button fx:id="btnOk" layoutX="188.0" layoutY="189.0" mnemonicParsing="false" onAction="#login" text="OK" />
-      <Label layoutX="52.0" layoutY="77.0" text="login" />
-      <Label layoutX="25.0" layoutY="119.0" text="paswoord" />
-      <TextField fx:id="txtLogin" layoutX="113.0" layoutY="73.0" />
-      <Label fx:id="lblError" layoutX="25.0" layoutY="151.0" prefHeight="17.0" prefWidth="240.0" text="error" textFill="RED" visible="false" />
-      <Label fx:id="lblError" layoutX="25.0" layoutY="160.0" textFill="RED" visible="false" />
-      <PasswordField fx:id="txtPassword" layoutX="113.0" layoutY="115.0" />
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.LoginController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="lblError" prefHeight="40.0" prefWidth="240.0" text="Error" textFill="RED" visible="false" />
+                  <Button fx:id="btnOk" alignment="CENTER" mnemonicParsing="false" onAction="#login" text="OK" />
+               </children>
+            </VBox>
+            <Label text="login" GridPane.halignment="CENTER" />
+            <Label text="paswoord" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <TextField fx:id="txtLogin" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin></TextField>
+            <PasswordField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin></PasswordField>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </center>
+</BorderPane>
