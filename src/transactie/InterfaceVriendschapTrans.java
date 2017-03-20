@@ -19,5 +19,5 @@ public interface InterfaceVriendschapTrans {
 
     public void vriendschapVerwijderen(String account, String vriend) throws DBException, ApplicationException;
     
-    public Vriendschap zoekVriendschap(String account, String vriend) throws DBException;
+    public Vriendschap zoekVriendschap(String account, String vriend) throws DBException, ApplicationException;
 }

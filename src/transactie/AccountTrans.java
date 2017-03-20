@@ -23,6 +23,11 @@ public class AccountTrans implements InterfaceAccountTrans
     public void accountToevoegen(Account acc) throws DBException, ApplicationException
     {
         adb = new AccountDB();
+        checkVeldenIngevuld(acc);
+        if(acc == null)
+        {
+            throw new ApplicationException("Account is null");
+        }
         adb.toevoegenAccount(acc);
     }
 
@@ -30,6 +35,11 @@ public class AccountTrans implements InterfaceAccountTrans
     public void accountWijzigen(Account acc) throws DBException, ApplicationException
     {
         adb = new AccountDB();
+        checkVeldenIngevuld(acc);
+        if(acc == null)
+        {
+            throw new ApplicationException("Account is null");
+        }
         adb.wijzigenAccount(acc);
     }
 
@@ -84,4 +94,35 @@ public class AccountTrans implements InterfaceAccountTrans
         return a;
     }
 
+    public void checkVeldenIngevuld(Account acc) throws ApplicationException
+    {
+        if (acc.getEmailadres() == null || acc.getEmailadres().trim().equals(""))
+        {
+            throw new ApplicationException("Emailadres niet ingevuld");
+        }
+        if (acc.getGeslacht() == null)
+        {
+            throw new ApplicationException("Geslacht niet ingevuld");
+        }
+
+        if (acc.getLogin() == null || acc.getLogin().trim().equals(""))
+        {
+            throw new ApplicationException("Login niet ingevuld");
+        }
+
+        if (acc.getNaam() == null || acc.getNaam().trim().equals(""))
+        {
+            throw new ApplicationException("Naam niet ingevuld");
+        }
+
+        if (acc.getPaswoord() == null || acc.getPaswoord().trim().equals(""))
+        {
+            throw new ApplicationException("Paswoord niet ingevuld");
+        }
+
+        if (acc.getVoornaam() == null || acc.getVoornaam().trim().equals(""))
+        {
+            throw new ApplicationException("Voornaam niet ingevuld");
+        }
+    }
 }

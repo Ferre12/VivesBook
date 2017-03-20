@@ -8,52 +8,59 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane prefHeight="252.0" prefWidth="343.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.PostController">
-   <center>
-      <ListView fx:id="lvPosts" prefHeight="194.0" prefWidth="92.0" BorderPane.alignment="CENTER">
+    <center>
+        <ListView fx:id="lvPosts" prefHeight="194.0" prefWidth="92.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="15.0" left="15.0" />
+            </BorderPane.margin>
+        </ListView>
+    </center>
+    <right>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnAddPost" mnemonicParsing="false" onAction="#loadToevoegenPostScreen" text="Post Toevoegen">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="btnRemovePost" mnemonicParsing="false" onAction="#removePost" text="Post Verwijderen">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Button>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </BorderPane.margin>
+        </VBox>
+    </right>
+    <top>
+        <GridPane prefHeight="60.0" prefWidth="435.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#loadLoginScreen" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                    <GridPane.margin>
+                        <Insets right="15.0" />
+                    </GridPane.margin>
+                </Button>
+                <Label fx:id="lblAccountlogin" text="accountlogin" GridPane.halignment="LEFT">
+                    <GridPane.margin>
+                        <Insets left="15.0" />
+                    </GridPane.margin>
+                </Label>
+            </children>
+        </GridPane>
+    </top>
+   <bottom>
+      <Label fx:id="lblErrorPosts" textFill="RED" visible="false" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="15.0" left="15.0" />
-         </BorderPane.margin></ListView>
-   </center>
-   <right>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnAddPost" mnemonicParsing="false" text="Post Toevoegen">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="btnRemovePost" mnemonicParsing="false" text="Post Verwijderen">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-         </BorderPane.margin>
-      </VBox>
-   </right>
-   <top>
-      <GridPane prefHeight="60.0" prefWidth="435.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#loadLoginScreen" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets right="15.0" />
-               </GridPane.margin>
-            </Button>
-            <Label fx:id="lblAccountlogin" text="accountlogin" GridPane.halignment="LEFT">
-               <GridPane.margin>
-                  <Insets left="15.0" />
-               </GridPane.margin>
-            </Label>
-         </children>
-      </GridPane>
-   </top>
+            <Insets bottom="15.0" />
+         </BorderPane.margin></Label>
+   </bottom>
 </BorderPane>

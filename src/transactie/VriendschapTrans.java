@@ -21,6 +21,16 @@ public class VriendschapTrans implements InterfaceVriendschapTrans
     @Override
     public void vriendschapToevoegen(String account, String vriend) throws DBException, ApplicationException
     {
+        if (account == null || account.trim().equals(""))
+        {
+            throw new ApplicationException("Account niet ingevuld");
+        }
+
+        if (vriend == null || vriend.trim().equals(""))
+        {
+            throw new ApplicationException("Vriend niet ingevuld");
+        }
+
         vdb = new VriendschapDB();
         vdb.toevoegenVriendschap(account, vriend);
     }
@@ -28,13 +38,33 @@ public class VriendschapTrans implements InterfaceVriendschapTrans
     @Override
     public void vriendschapVerwijderen(String account, String vriend) throws DBException, ApplicationException
     {
+        if (account == null || account.trim().equals(""))
+        {
+            throw new ApplicationException("Account niet ingevuld");
+        }
+
+        if (vriend == null || vriend.trim().equals(""))
+        {
+            throw new ApplicationException("Vriend niet ingevuld");
+        }
+
         vdb = new VriendschapDB();
         vdb.verwijderenVriendschap(account, vriend);
     }
 
     @Override
-    public Vriendschap zoekVriendschap(String account, String vriend) throws DBException
+    public Vriendschap zoekVriendschap(String account, String vriend) throws DBException, ApplicationException
     {
+        if (account == null || account.trim().equals(""))
+        {
+            throw new ApplicationException("Account niet ingevuld");
+        }
+
+        if (vriend == null || vriend.trim().equals(""))
+        {
+            throw new ApplicationException("Vriend niet ingevuld");
+        }
+
         vdb = new VriendschapDB();
         return vdb.zoekVriendschap(account, vriend);
     }

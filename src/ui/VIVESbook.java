@@ -55,7 +55,7 @@ public class VIVESbook extends Application {
 
     }
 
-    public void laadPosttoevoegenScherm() {
+    public void laadPosttoevoegenScherm(Account a) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource(
               "view/Posttoevoegen.fxml"));
@@ -66,6 +66,7 @@ public class VIVESbook extends Application {
 
             // referentie naar hier bewaren in de controller
             controller.setMainApp(this);
+            controller.setData(a);
 
             Scene scene = new Scene(root);
             stage.setTitle("Post toevoegen");
@@ -73,8 +74,8 @@ public class VIVESbook extends Application {
 
         } catch (IOException e) {
             System.out.println("!!! - " + e.getMessage());
+            e.printStackTrace();
         }
-
     }
 
    

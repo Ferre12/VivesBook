@@ -38,6 +38,9 @@ public class PostController implements Initializable
     @FXML
     private ListView<Post> lvPosts;
 
+    @FXML
+    private Label lblErrorPosts;
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -63,6 +66,7 @@ public class PostController implements Initializable
 
     public void buildView()
     {
+        lblErrorPosts.setVisible(false);
         PostTrans pt = new PostTrans();
         lblAccountlogin.setText(a.getLogin());
         try
@@ -72,19 +76,50 @@ public class PostController implements Initializable
             {
                 lvPosts.getItems().add(p);
             }
-        } catch (ApplicationException e)
+        } catch (ApplicationException | DBException e)
         {
-            System.out.println(e.getMessage());
-        } catch (DBException e)
-        {
-            System.out.println(e.getMessage());
+            lblErrorPosts.setVisible(true);
+            lblErrorPosts.setText(e.getMessage());
         }
     }
-    
+
     @FXML
     public void loadLoginScreen()
     {
         mainApp.laadLoginScherm();
     }
 
+    @FXML
+    public void loadToevoegenPostScreen()
+    {
+        mainApp.laadPosttoevoegenScherm(a);
+    }
+
+    @FXML
+    public void removePost()
+    {
+        lblErrorPosts.setVisible(false);
+        PostTrans pt = new PostTrans();
+
+        int selectedIndex = lvPosts.getSelectionModel().getSelectedIndex();
+        Post selectedPost = lvPosts.getSelectionModel().getSelectedItem();
+        if (selectedIndex == -1)
+        {
+            lblErrorPosts.setVisible(true);
+            lblErrorPosts.setText("Er is geen post geselecteerd");
+        } else
+        {
+            lblErrorPosts.setVisible(false);
+            
+            lvPosts.getItems().remove(selectedPost);
+            try
+            {
+                pt.postVerwijderen(selectedPost.getId(), selectedPost.getEigenaar());
+            } catch (DBException|ApplicationException ex)
+            {
+                lblErrorPosts.setVisible(true);
+                lblErrorPosts.setText(ex.getMessage());
+            }
+        }
+    }
 }

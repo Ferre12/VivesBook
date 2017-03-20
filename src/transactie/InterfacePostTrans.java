@@ -20,7 +20,7 @@ public interface InterfacePostTrans {
 
     public void postVerwijderen(Integer postID, String verwijderaar) throws DBException, ApplicationException;
     
-    public Post zoekPost(String login, Integer postid) throws DBException;
+    public Post zoekPost(String login, Integer postid) throws DBException, ApplicationException;
     
     public ArrayList<Post> zoekAllePostsVanAccountEnVrienden(String login) throws DBException, ApplicationException;
     

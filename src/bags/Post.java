@@ -61,7 +61,7 @@ public class Post {
 //    }
     @Override
     public String toString() {
-        return datum.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT)) + " - " + eigenaar + " - " + tekst;
+        return datum.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT)) + " - " + eigenaar + " - " + tekst + " - " + id;
     }
 
 }
