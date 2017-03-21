@@ -13,11 +13,12 @@ import exception.ApplicationException;
 import exception.DBException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import transactie.VriendschapTrans;
 
 public class TEST_DB
 {
 
-    public static void main(String args[]) throws DBException
+    public static void main(String args[])
     {
 
         Account a = new Account();
@@ -231,5 +232,16 @@ public class TEST_DB
 //        {
 //            System.out.println(e.getMessage());
 //        }
+          VriendschapTrans vtt = new VriendschapTrans();
+        try
+        {
+            vtt.vriendschapToevoegen(null, null);
+        } catch (DBException ex)
+        {
+            System.out.println("db");
+        } catch (ApplicationException ex)
+        {
+            System.out.println("app");
+        }
     }
 }

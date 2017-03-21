@@ -66,6 +66,11 @@ public class VriendschapTrans implements InterfaceVriendschapTrans
         }
 
         vdb = new VriendschapDB();
-        return vdb.zoekVriendschap(account, vriend);
+        Vriendschap v = vdb.zoekVriendschap(account, vriend);
+        if(v == null)
+        {
+            throw new ApplicationException("Vriendschap niet gevonden");
+        }
+        return v;
     }
 }
