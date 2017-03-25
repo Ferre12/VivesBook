@@ -44,7 +44,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#loadLoginScreen" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                     <GridPane.margin>
                         <Insets right="15.0" />
                     </GridPane.margin>

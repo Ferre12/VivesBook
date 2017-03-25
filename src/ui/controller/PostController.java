@@ -84,7 +84,7 @@ public class PostController implements Initializable
     }
 
     @FXML
-    public void loadLoginScreen()
+    public void logout()
     {
         mainApp.laadLoginScherm();
     }

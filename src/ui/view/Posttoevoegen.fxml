@@ -24,7 +24,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="btnLogout" mnemonicParsing="false" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+            <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets right="50.0" />
                </GridPane.margin>
@@ -60,7 +60,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#annuleren" text="Cancel" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets right="50.0" />
                </GridPane.margin>

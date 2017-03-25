@@ -11,9 +11,8 @@
    <center>
       <GridPane BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <VBox alignment="CENTER" prefHeight="113.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="lblError" prefHeight="40.0" prefWidth="240.0" text="Error" textFill="RED" visible="false" />
                   <Button fx:id="btnOk" alignment="CENTER" mnemonicParsing="false" onAction="#login" text="OK" />
                </children>
             </VBox>
@@ -27,6 +26,7 @@
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></PasswordField>
+            <Label fx:id="lblError" prefHeight="100.0" prefWidth="500.0" text="Error" textFill="RED" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

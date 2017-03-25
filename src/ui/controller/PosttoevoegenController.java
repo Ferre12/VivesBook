@@ -96,6 +96,18 @@ public class PosttoevoegenController implements Initializable
         //terugkeren
         mainApp.laadPostsScherm(a);
     }
+    
+    @FXML
+    public void annuleren()
+    {
+        mainApp.laadPostsScherm(a);
+    }
+    
+    @FXML
+    public void logout()
+    {
+        mainApp.laadLoginScherm();
+    }
 
     @FXML
     public void setData(Account a)
